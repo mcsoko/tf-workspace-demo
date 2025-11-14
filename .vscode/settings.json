@@ -1,0 +1,9 @@
+{
+    "chat.mcp.serverSampling": {
+        "tf-vault-pki-demo/.vscode/mcp.json: terraform": {
+            "allowedModels": [
+                "copilot/gpt-5-mini"
+            ]
+        }
+    }
+}

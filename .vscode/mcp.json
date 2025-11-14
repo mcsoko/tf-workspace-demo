@@ -1,0 +1,46 @@
+{
+    "servers": {
+      "terraform": {
+        "type": "stdio",
+        "command": "podman",
+        "args": [
+          "run",
+          "-i",
+          "--rm",
+          "-e",
+          // VS Code will substitute this with the result of the 'tfe_token' input
+          "TFE_TOKEN=${input:tfe_token}", 
+          "-e",
+          "TFE_ADDRESS=https://app.terraform.io",
+          "-e",
+          // Pass the selected Terraform organization into the container
+          "TFE_ORGANIZATION=${input:tfe_org}",
+          "-e",
+          // Pass the VCS OAuth token id into the container (prompted securely)
+          "TFE_VCS_OAUTH_TOKEN_ID=${input:tfe_vcs_oauth_token_id}",
+          "hashicorp/terraform-mcp-server:latest"
+        ]
+      }
+    },
+    "inputs": [
+      {
+        "type": "promptString",
+        "id": "tfe_token",
+        "description": "Enter your Terraform API Token",
+        "password": true // This hides the input for security
+      },
+      {
+        "type": "promptString",
+        "id": "tfe_org",
+        "description": "Terraform organization to use (defaults to rakatan)",
+        "default": "rakatan"
+      }
+      ,
+      {
+        "type": "promptString",
+        "id": "tfe_vcs_oauth_token_id",
+        "description": "Enter your Terraform Cloud VCS OAuth token ID (used to connect VCS repos)",
+        "password": true
+      }
+    ]
+  }
