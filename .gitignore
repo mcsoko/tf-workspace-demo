@@ -1,3 +1,10 @@
+.terraform/
+*.tfstate
+*.tfstate.*
+build/
+__pycache__/
+*.pyc
+venv/
 # Local .terraform directories
 .terraform/
 
