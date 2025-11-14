@@ -1,10 +1,10 @@
-.terraform/
-*.tfstate
-*.tfstate.*
-build/
+/.terraform
+terraform.tfstate
+terraform.tfstate.backup
+/build
 __pycache__/
 *.pyc
-venv/
+.DS_Store
 # Local .terraform directories
 .terraform/
 
